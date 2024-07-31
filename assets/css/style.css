@@ -1,4 +1,3 @@
-/* Base Styles */
 body {
   background: #000 url('background.gif') repeat;
   font-family: 'Product Sans', sans-serif;
@@ -40,16 +39,20 @@ body {
   box-shadow: rgba(114, 78, 147, 0.297) 0 2px 4px, rgba(114, 78, 147, 0.3) 0 7px 13px -3px, rgba(114, 78, 147, 0.297) 0 -3px 0 inset;
   color: #000;
   cursor: pointer;
-  display: inline-flex;
+  display: block;
   font-family: 'Product Sans', sans-serif;
-  height: 60px;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
+  height: 48px;
+  line-height: 48px;
+  padding: 0 16px;
   text-decoration: none;
   transition: box-shadow .15s, transform .15s;
   font-size: 18px;
-  margin: 10px;
+  margin: 10px auto;
+}
+
+.button, .button-1, .button-2 {
+  max-width: 300px;
+  padding: 0 12px;
 }
 
 .button:hover, .button-1:hover, .button-2:hover {
@@ -93,7 +96,6 @@ body {
   100% { background-color: #ccc; }
 }
 
-/* Media Queries */
 @media (max-width: 768px) {
   .border {
     width: 95%;
@@ -106,9 +108,10 @@ body {
   }
 
   .button, .button-1, .button-2 {
-    width: 100%;
-    height: 50px;
     font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
   }
 }
 
@@ -124,8 +127,20 @@ body {
   }
 
   .button, .button-1, .button-2 {
-    height: 45px;
     font-size: 14px;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 15px;
+    width: calc(100% - 30px);
+  }
+
+  .button, .button-1 {
+    max-width: 100%;
+  }
+
+  .button-2 {
+    max-width: 100%;
+    padding: 0 15px;
   }
 
   .container p {
