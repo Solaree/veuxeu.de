@@ -33,7 +33,7 @@ jobs:
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
-          source: ./ ./.well-known
+          source: ./.well-known
           destination: ./_site
       - name: Show files
         run: ls -a
