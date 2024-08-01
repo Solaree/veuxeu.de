@@ -1,7 +1,6 @@
 class TypingText {
   constructor() {
-    this.typedTextSpan = document.querySelector('.typed-text');
-    this.cursorSpan = document.querySelector('.cursor');
+    this.typedTextSpan = document.querySelector('.typed-text'), this.cursorSpan = document.querySelector('.cursor');
 
     this.textArray = [
       'Who I am?', 
@@ -10,11 +9,8 @@ class TypingText {
       'I Use <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.svg" alt="C Logo" class="logo"> Btw',
       '#teampixel'
     ];
-    this.typingDelay = 45;
-    this.erasingDelay = 45;
-    this.newTextDelay = 350;
-    this.textArrayIdx = 0;
-    this.charIdx = 0;
+    this.typingDelay = 45, this.erasingDelay = 45, this.newTextDelay = 350;
+    this.textArrayIdx = 0, this.charIdx = 0;
   }
 
   type = () => {
