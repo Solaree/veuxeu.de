@@ -33,12 +33,10 @@ jobs:
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
-          source: ./
+          source: ./ ./.well-known
           destination: ./_site
-      - name: Copy .well-known directory
-        run: |
-          mkdir -p ./_site/.well-known
-          cp -r .well-known/* ./_site/.well-known/
+      - name: Show files
+        run: ls -a
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
