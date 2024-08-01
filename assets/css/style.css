@@ -90,6 +90,11 @@ body {
   animation: blink 1s infinite;
 }
 
+.logo {
+  height: 1em;
+  vertical-align: middle;
+}
+
 @keyframes blink {
   0%, 49% { background-color: #ccc; }
   50%, 99% { background-color: transparent; }
