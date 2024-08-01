@@ -35,8 +35,10 @@ jobs:
         with:
           source: ./
           destination: ./_site
-      - name: Copy dotfiles
-        run: cp -r .well-known ./_site/.well-known
+      - name: Copy .well-known directory
+        run: |
+          mkdir -p ./_site/.well-known
+          cp -r .well-known/* ./_site/.well-known/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
