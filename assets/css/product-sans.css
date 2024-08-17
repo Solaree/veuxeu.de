@@ -1,0 +1,6 @@
+@font-face {
+  font-family: product sans;
+  font-style: normal;
+  font-weight:400;
+  src: local('Product Sans'), url(ProductSans-Regular.woff) format('woff')
+}

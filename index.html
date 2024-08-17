@@ -3,14 +3,184 @@
 <head>
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <link rel='icon' type='image/x-icon' href='assets/images/favicon.ico'>
-  <link rel='stylesheet' type='text/css' href='assets/css/style.css'>
-  <link href='https://fonts.cdnfonts.com/css/product-sans' rel='stylesheet'>
+  <link rel='icon' type='image/x-icon' href='{{ url_for("assets", filename="images/favicon.ico") }}'>
+  <link rel='stylesheet' type='text/css' href='{{ url_for("assets", filename="css/product-sans.css") }}'>
+  <style>
+    body {
+      background-image: url('assets/images/page.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      width: 100vw;
+      font-family: 'Product Sans', sans-serif;
+      color: #eee;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .border {
+      background: rgba(22, 40, 85, 0.85);
+      border: 2px solid rgba(57, 70, 255, 0.388);
+      border-radius: 15px;
+      width: 90%;
+      max-width: 450px;
+      height: auto;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      margin: 0 auto 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin: 0;
+      color: #fff;
+    }
+
+    .buttons-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .button {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      border-radius: 30px;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-family: 'Product Sans', sans-serif;
+      height: 48px;
+      line-height: 48px;
+      padding: 0 24px;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+      font-size: 16px;
+    }
+
+    .button:hover {
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      transform: translateY(-3px);
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: #ccc;
+      margin-top: 40px;
+    }
+
+    .container {
+      margin-top: 20px;
+    }
+
+    .container p {
+      font-size: 1.3rem;
+      font-weight: bold;
+      letter-spacing: 0.1rem;
+      text-align: center;
+    }
+
+    .container p span.typed-text {
+      font-weight: normal;
+      color: #fff;
+    }
+
+    .container p span.cursor {
+      display: inline-block;
+      background-color: #ccc;
+      margin-left: 0.1rem;
+      width: 3px;
+      animation: blink 1s infinite;
+    }
+
+    .logo {
+      height: 1em;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+      0%, 49% { background-color: #ccc; }
+      50%, 99% { background-color: transparent; }
+      100% { background-color: #ccc; }
+    }
+
+    @media (max-width: 768px) {
+      .border {
+        width: 95%;
+        padding: 20px;
+      }
+    
+      .avatar {
+        width: 80px;
+        height: 80px;
+      }
+    
+      h1 {
+        font-size: 1.8rem;
+      }
+    
+      .button {
+        font-size: 14px;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
+      }
+    
+      h2 {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .border {
+        width: 100%;
+        padding: 15px;
+      }
+    
+      .avatar {
+        width: 70px;
+        height: 70px;
+      }
+    
+      h1 {
+        font-size: 1.6rem;
+      }
+    
+      .button {
+        font-size: 12px;
+        height: 36px;
+        line-height: 36px;
+        padding: 0 15px;
+      }
+    
+      h2 {
+        font-size: 1rem;
+      }
+    
+      .container p {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
   <title>Solar's page</title>
 </head>
 <body>
   <div class='border'>
-    <img src='assets/images/avatar.jpg' alt='Avatar' class='avatar'>
+    <img src='assets/images/avatar.png' class='avatar'>
     <h1>Solar</h1>
     <div class='container'>
       <p>
@@ -18,11 +188,92 @@
         <span class='cursor'>&nbsp;</span>
       </p>
     </div>
-    <a href='https://t.me/veuxeu' class='button'>Telegram</a>
-    <a href='https://github.com/Solaree/' class='button-1'>GitHub</a>
-    <a href='https://discord.gg/qeGbmR6b9b' class='button-2'>Discord Server</a>
-    <h2>My socials</h2>
+    <div class='buttons-container'>
+      <a href='https://t.me/veuxeu' class='button'>Telegram</a>
+      <a href='https://github.com/Solaree' class='button'>GitHub</a>
+      <a href='https://discord.gg/qeGbmR6b9b' class='button'>Discord Server</a>
+    </div>
+    <h2>Contacts</h2>
   </div>
-  <script src='assets/js/script.js'></script>
+  <script>
+    class CustomImage {
+      constructor(src, clsName) {
+        this.img = new Image();
+        this.img.src = src;
+        this.img.className = clsName;
+      }
+    
+      getOuterHTML() {
+        return this.img.outerHTML;
+      }
+    }
+
+    class TypingText {
+      constructor() {
+        this.typedTextSpan = document.querySelector('.typed-text'), this.cursorSpan = document.querySelector('.cursor');
+        this.textArray = [
+          'Who I am?',
+          `${new CustomImage('assets/images/c.png', 'logo').getOuterHTML()} developer`,
+          `${new CustomImage('assets/images/python.png', 'logo').getOuterHTML()} developer`,
+          `${new CustomImage('assets/images/revolut.png', 'logo').getOuterHTML()} ${new CustomImage('assets/images/monobank.png', 'logo').getOuterHTML()} p2p arbitrager on ${new CustomImage('assets/images/bybit.png', 'logo').getOuterHTML()}`,
+          `I use ${new CustomImage('assets/images/archlinux.png', 'logo').getOuterHTML()} btw`,
+          '#teampixel'
+        ];
+        this.typingDelay = 45, this.erasingDelay = 45, this.newTextDelay = 1000;
+        this.textArrayIdx = 0, this.charIdx = 0;
+      }
+    
+      type = () => {
+        if (this.charIdx < this.textArray[this.textArrayIdx].length) {
+          if (!this.cursorSpan.classList.contains('typing'))
+            this.cursorSpan.classList.add('typing');
+          const currentChar = this.textArray[this.textArrayIdx].charAt(this.charIdx);
+          if (currentChar === '<') {
+            const endIdx = this.textArray[this.textArrayIdx].indexOf('>', this.charIdx) + 1;
+            this.typedTextSpan.innerHTML += this.textArray[this.textArrayIdx].substring(this.charIdx, endIdx);
+            this.charIdx = endIdx;
+          } else {
+            this.typedTextSpan.innerHTML += currentChar;
+            this.charIdx++;
+          }
+          setTimeout(this.type, this.typingDelay);
+        } else {
+          this.cursorSpan.classList.remove('typing');
+          setTimeout(this.erase, this.newTextDelay);
+        }
+      }
+    
+      erase = () => {
+        if (this.charIdx > 0) {
+          if (!this.cursorSpan.classList.contains('typing'))
+            this.cursorSpan.classList.add('typing');
+          if (this.typedTextSpan.lastChild && this.typedTextSpan.lastChild.nodeName === 'IMG') {
+            this.typedTextSpan.lastChild.remove();
+            this.charIdx = this.textArray[this.textArrayIdx].lastIndexOf('<', this.charIdx);
+          } else {
+            this.typedTextSpan.innerHTML = this.textArray[this.textArrayIdx].substring(0, this.charIdx - 1);
+            this.charIdx--;
+          }
+          setTimeout(this.erase, this.erasingDelay);
+        } else {
+          this.cursorSpan.classList.remove('typing');
+          this.textArrayIdx++;
+          if (this.textArrayIdx >= this.textArray.length)
+            this.textArrayIdx = 0;
+          setTimeout(this.type, this.typingDelay + 1100);
+        }
+      }
+    
+      start = () => {
+        if (this.textArray.length)
+          setTimeout(this.type, this.newTextDelay + 250);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const typingText = new TypingText();
+      typingText.start();
+    });
+  </script>
 </body>
 </html>

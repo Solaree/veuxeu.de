@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <link rel='icon' type='image/x-icon' href='{{ url_for("assets", filename="images/favicon.ico") }}'>
+  <link rel='stylesheet' type='text/css' href='{{ url_for("assets", filename="css/product-sans.css") }}'>
+  <style>
+    body {
+      background-image: url('assets/images/exchange.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: background-position 0.3s ease-in-out;
+      font-family: 'Product Sans', sans-serif;
+      color: #eee;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgb(8, 21, 52);
+      z-index: 1000;
+      padding: 10px 0;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      color: #fff;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .border {
+      background: rgba(22, 40, 85, 0.85);
+      border: 2px solid rgba(57, 70, 255, 0.388);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+    
+    h2 {
+      font-size: 1.8rem;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+    
+    .benefits h3 {
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    
+    .benefits ul {
+      list-style: none;
+      padding: 0;
+      font-size: 1.2rem;
+      text-align: left;
+      line-height: 1.8;
+    }
+    
+    .benefits ul li {
+      margin-bottom: 10px;
+    }
+    
+    .contact h3 {
+      font-size: 1.6rem;
+      color: #fff;
+      margin: 30px 0 20px;
+    }
+    
+    .button {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      border-radius: 30px;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-family: 'Product Sans', sans-serif;
+      height: 48px;
+      line-height: 48px;
+      padding: 0 24px;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+      font-size: 16px;
+    }
+    
+    .button:hover {
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .extra-info {
+      background: rgba(22, 40, 85, 0.85);
+      border: 2px solid rgba(57, 70, 255, 0.388);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: left;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      margin-top: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    
+    .extra-info.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .extra-info h3 {
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    
+    .extra-info p {
+      font-size: 1.2rem;
+      color: #ccc;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        width: 95%;
+      }
+    
+      h1 {
+        font-size: 2.2rem;
+      }
+    
+      h2 {
+        font-size: 1.5rem;
+      }
+    
+      .benefits h3, .contact h3, .extra-info h3 {
+        font-size: 1.4rem;
+      }
+    
+      .benefits ul, .extra-info p {
+        font-size: 1rem;
+      }
+    
+      .button {
+        font-size: 14px;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+    
+      h2 {
+        font-size: 1.3rem;
+      }
+    
+      .benefits h3, .contact h3, .extra-info h3 {
+        font-size: 1.2rem;
+      }
+    
+      .benefits ul, .extra-info p {
+        font-size: 0.9rem;
+      }
+    
+      .button {
+        font-size: 12px;
+        height: 36px;
+        line-height: 36px;
+        padding: 0 15px;
+      }
+    }
+  </style>
+  <title>P2P Arbitrage Service</title>
+</head>
+<body>
+  <header>
+    <h1>P2P Arbitrage Service</h1>
+  </header>
+  
+  <div class='container'>
+    <div class='border'>
+      <h2>Maximize Your Profits with Secure & Efficient Transactions</h2>
+      <div class='benefits'>
+        <h3>Why Choose Us?</h3>
+        <ul>
+          <li>💼 <strong>Professional Support:</strong> Our team is available 24/7 to assist you.</li>
+          <li>🔒 <strong>Secure Transactions:</strong> We use the latest security protocols to ensure your funds are safe.</li>
+          <li>💹 <strong>High Profit Margins:</strong> We help you identify the best opportunities for maximum returns.</li>
+          <li>🚀 <strong>Fast & Reliable:</strong> Execute trades quickly with minimal delays.</li>
+        </ul>
+      </div>
+      <div class='contact'>
+        <h3>Contact Us</h3>
+        <a class='button' href='https://t.me/p2p_arbitrage_service'>Message Us on Telegram</a>
+      </div>
+    </div>
+    
+    <div id='telegram-info' class='extra-info'>
+      <h3>Why Telegram?</h3>
+      <p>Telegram provides a secure and fast communication platform where you can reach us anytime. Stay connected with our team and get instant updates on your transactions.</p>
+    </div>
+    
+    <div id='creator-info' class='extra-info'>
+      <h3>About the Creator</h3>
+      <p>This service is brought to you by SolarTeam, a trusted name in the industry. With years of experience and a commitment to excellence, we strive to provide the best service possible.</p>
+    </div>
+  </div>
+
+  <script>
+    function debounce(func, wait = 20, immediate = true) {
+      let timeout;
+      return function () {
+        let context = this, args = arguments;
+        let later = function () {
+          timeout = null;
+          if (!immediate)
+            func.apply(context, args);
+        };
+        let callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow)
+          func.apply(context, args);
+      };
+    }
+
+    function checkVisibility() {
+      const telegramInfo = document.getElementById('telegram-info');
+      const creatorInfo = document.getElementById('creator-info');
+      const triggerPoint = window.innerHeight * 0.8;
+
+      const telegramInfoPosition = telegramInfo.getBoundingClientRect().top;
+      const creatorInfoPosition = creatorInfo.getBoundingClientRect().top;
+
+      if (telegramInfoPosition < triggerPoint) {
+        telegramInfo.classList.add('visible');
+        setTimeout(() => {
+          if (telegramInfo.classList.contains('visible'))
+            creatorInfo.classList.add('visible');
+        }, 900);
+      }
+    }
+
+    window.addEventListener('scroll', debounce(checkVisibility));
+  </script>
+</body>
+</html>
