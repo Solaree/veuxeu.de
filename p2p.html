@@ -160,6 +160,16 @@
       margin-bottom: 10px;
     }
 
+    .copyright {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      margin-bottom: 5px;
+      color: #fff;
+      font-size: 0.9rem;
+      z-index: 1000;
+    }
+
     @media (max-width: 768px) {
       .extra-info {
         padding: 10px;
@@ -268,8 +278,8 @@
         <h3>Creator Info</h3>
         <div class='extra-info' id='creator-info'>
           <h3>About the Creator</h3>
-          <p>Solar is a passionate developer with a love for blockchain technology.</p>
-          <p>Dedicated to providing the best trading experience for users.</p>
+          <p>Solar is dedicated to providing the best P2P trading experience.</p>
+          <p>With years of experience in the crypto world, our aim is to help users maximize their trading potential.</p>
         </div>
       </div>
 
@@ -281,15 +291,28 @@
     </div>
   </div>
 
-  <script>
-    window.addEventListener('scroll', function() {
-      var telegramInfo = document.getElementById('telegram-info');
-      var creatorInfo = document.getElementById('creator-info');
+  <div class='copyright'>
+    © 2024 Solar. All rights reserved.
+  </div>
 
-      if (window.scrollY + window.innerHeight > telegramInfo.offsetTop + 100)
-        telegramInfo.classList.add('visible');
-      if (window.scrollY + window.innerHeight > creatorInfo.offsetTop + 100)
-        creatorInfo.classList.add('visible');
+  <script>
+    const extraInfoElements = document.querySelectorAll('.extra-info');
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, options);
+
+    extraInfoElements.forEach(element => {
+      observer.observe(element);
     });
   </script>
 </body>
