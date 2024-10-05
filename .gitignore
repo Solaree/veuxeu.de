@@ -1,5 +1,1 @@
 .vscode/
-
-# this stand for Flask web-server debug stuff
-
-flask/

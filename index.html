@@ -7,11 +7,7 @@
   <link rel='stylesheet' type='text/css' href='assets/css/product-sans.css'>
   <style>
     body {
-      background-image: url('assets/images/page.jpg');
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
+      background-color: #1d2a45;
       height: 100vh;
       width: 100vw;
       font-family: 'Product Sans', sans-serif;
@@ -22,6 +18,29 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('assets/images/page.png');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      z-index: -1;
+    }
+
+    body.loaded::before {
+      opacity: 1;
     }
 
     .border {
@@ -190,8 +209,8 @@
       </p>
     </div>
     <div class='buttons-container'>
-      <a href='https://t.me/veuxeu' class='button'>Telegram</a>
-      <a href='https://github.com/Solaree' class='button'>GitHub</a>
+      <a href='telegram.html' class='button'>Telegram</a>
+      <a href='github.html' class='button'>GitHub</a>
       <a href='discord.html' class='button'>Discord Server</a>
     </div>
     <h2>Contacts</h2>
@@ -214,13 +233,12 @@
         this.typedTextSpan = document.querySelector('.typed-text'), this.cursorSpan = document.querySelector('.cursor');
         this.textArray = [
           'Who I am?',
-          `${new CustomImage('assets/images/c.png', 'logo').getOuterHTML()} developer`,
-          `${new CustomImage('assets/images/python.png', 'logo').getOuterHTML()} developer`,
-          `${new CustomImage('assets/images/revolut.png', 'logo').getOuterHTML()} ${new CustomImage('assets/images/monobank.png', 'logo').getOuterHTML()} p2p arbitrager on ${new CustomImage('assets/images/bybit.png', 'logo').getOuterHTML()}`,
+          `A guy, who likes collecting ${new CustomImage('assets/images/apple.png', 'logo').getOuterHTML()} and ${new CustomImage('assets/images/android.png', 'logo').getOuterHTML()} devices`,
+          `Senior ${new CustomImage('assets/images/c.png', 'logo').getOuterHTML()} & Junior ${new CustomImage('assets/images/zig.png', 'logo').getOuterHTML()} developer`,
+          `Former Reverse Engineer ${new CustomImage('assets/images/ida.png', 'logo').getOuterHTML()}`,
           `I use ${new CustomImage('assets/images/archlinux.png', 'logo').getOuterHTML()} btw`,
-          '#teampixel'
         ];
-        this.typingDelay = 45, this.erasingDelay = 45, this.newTextDelay = 1000;
+        this.typingDelay = 40, this.erasingDelay = 40, this.newTextDelay = 800;
         this.textArrayIdx = 0, this.charIdx = 0;
       }
     
@@ -274,6 +292,10 @@
     document.addEventListener('DOMContentLoaded', () => {
       const typingText = new TypingText();
       typingText.start();
+
+      window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+      });
     });
   </script>
 </body>
