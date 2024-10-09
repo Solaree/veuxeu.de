@@ -3,23 +3,25 @@
 <head>
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <link rel='stylesheet' href='assets/css/product-sans.css'>
   <link rel='icon' type='image/x-icon' href='assets/images/favicon.ico'>
-  <link rel='stylesheet' type='text/css' href='assets/css/product-sans.css'>
   <style>
-    body {
-      background-color: #1d2a45;
-      height: 100vh;
-      width: 100vw;
-      font-family: 'Product Sans', sans-serif;
-      color: #eee;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f1626, #283047);
+      height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
-      position: relative;
+      justify-content: center;
+      font-family: 'Product Sans', sans-serif;
+      color: #ffffff;
       overflow: hidden;
+      position: relative;
     }
 
     body::before {
@@ -31,176 +33,181 @@
       bottom: 0;
       background-image: url('assets/images/page.png');
       background-size: cover;
-      background-attachment: fixed;
       background-position: center;
-      background-repeat: no-repeat;
+      filter: blur(15px) brightness(0.5);
       opacity: 0;
-      transition: opacity 1s ease-in-out;
       z-index: -1;
+      transition: opacity 0.8s ease-in-out;
     }
 
     body.loaded::before {
       opacity: 1;
     }
 
-    .border {
-      background: rgba(22, 40, 85, 0.85);
-      border: 2px solid rgba(57, 70, 255, 0.388);
-      border-radius: 15px;
-      width: 90%;
-      max-width: 450px;
-      height: auto;
-      padding: 25px;
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 60px;
+      border-radius: 30px;
       text-align: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 420px;
+      transition: transform 0.3s ease-in-out;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
     }
 
     .avatar {
-      width: 100px;
-      height: 100px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
-      border: 3px solid #fff;
-      margin: 0 auto 20px;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      margin-bottom: 30px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover .avatar {
+      transform: scale(1.1);
     }
 
     h1 {
-      font-size: 2rem;
-      margin: 0;
-      color: #fff;
+      font-size: 2.4rem;
+      margin-bottom: 15px;
+      color: #e6e9f2;
+      letter-spacing: 1.5px;
+    }
+
+    .container p {
+      font-size: 1.5rem;
+      letter-spacing: 0.2rem;
+      color: #ffffff;
+      margin-bottom: 20px;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .typed-text {
+      color: #ffffff;
+    }
+
+    .cursor {
+      background-color: #ffffff;
+      margin-left: 0.1rem;
+      width: 4px;
+      animation: blink 1s infinite;
+      display: inline-block;
     }
 
     .buttons-container {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
+      gap: 15px;
+      margin-top: 30px;
     }
 
     .button {
-      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-      border-radius: 30px;
-      border: none;
-      color: #fff;
-      cursor: pointer;
-      display: inline-block;
-      font-family: 'Product Sans', sans-serif;
-      height: 48px;
-      line-height: 48px;
-      padding: 0 24px;
+      background: rgba(255, 255, 255, 0.15);
+      color: #00b3ff;
+      padding: 14px 20px;
+      text-align: center;
+      border-radius: 5px;
       text-decoration: none;
-      transition: all 0.3s ease-in-out;
       font-size: 16px;
+      font-family: 'Courier New', monospace;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      position: relative;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0, 179, 255, 0.5);
     }
 
     .button:hover {
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-      transform: translateY(-3px);
-    }
-
-    h2 {
-      font-size: 1.5rem;
-      color: #ccc;
-      margin-top: 40px;
-    }
-
-    .container {
-      margin-top: 20px;
-    }
-
-    .container p {
-      font-size: 1.3rem;
-      font-weight: bold;
-      letter-spacing: 0.1rem;
-      text-align: center;
-    }
-
-    .container p span.typed-text {
-      font-weight: normal;
+      background: rgba(0, 179, 255, 0.3);
       color: #fff;
     }
 
-    .container p span.cursor {
-      display: inline-block;
-      background-color: #ccc;
-      margin-left: 0.1rem;
-      width: 3px;
-      animation: blink 1s infinite;
-    }
-
-    .logo {
-      height: 1em;
-      vertical-align: middle;
+    h2 {
+      color: #aaa;
+      margin-top: 60px;
+      font-size: 1.6rem;
     }
 
     @keyframes blink {
-      0%, 49% { background-color: #ccc; }
-      50%, 99% { background-color: transparent; }
-      100% { background-color: #ccc; }
+      0%, 49% {
+        background-color: #ffffff;
+      }
+
+      50%, 99% {
+        background-color: transparent;
+      }
+
+      100% {
+        background-color: #ffffff;
+      }
     }
 
     @media (max-width: 768px) {
-      .border {
-        width: 95%;
-        padding: 20px;
-      }
-    
       .avatar {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
       }
-    
+
       h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
-    
+
       .button {
-        font-size: 14px;
-        height: 40px;
-        line-height: 40px;
-        padding: 0 20px;
+        font-size: 16px;
+        padding: 14px 20px;
       }
-    
+
       h2 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+      }
+
+      .container p {
+        font-size: 1.3rem;
       }
     }
 
     @media (max-width: 480px) {
-      .border {
-        width: 100%;
-        padding: 15px;
+      .card {
+        padding: 30px;
       }
-    
+
       .avatar {
-        width: 70px;
-        height: 70px;
+        width: 80px;
+        height: 80px;
       }
-    
+
       h1 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
       }
-    
+
       .button {
-        font-size: 12px;
-        height: 36px;
-        line-height: 36px;
-        padding: 0 15px;
+        font-size: 14px;
+        padding: 12px 20px;
       }
-    
+
       h2 {
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
-    
+
       .container p {
         font-size: 1.1rem;
       }
     }
   </style>
-  <title>Solar's page</title>
+  <title>Solar's Page</title>
 </head>
 <body>
-  <div class='border'>
-    <img src='assets/images/avatar.png' class='avatar'>
+  <div class='card'>
+    <img src='assets/images/avatar.jpg' class='avatar' alt='avatar'>
     <h1>Solar</h1>
     <div class='container'>
       <p>
@@ -209,89 +216,88 @@
       </p>
     </div>
     <div class='buttons-container'>
-      <a href='telegram.html' class='button'>Telegram</a>
-      <a href='github.html' class='button'>GitHub</a>
-      <a href='discord.html' class='button'>Discord Server</a>
+      <a href='https://veuxeu.de/telegram' class='button'>Telegram</a>
+      <a href='https://veuxeu.de/github' class='button'>GitHub</a>
+      <a href='https://veuxeu.de/discord' class='button'>Discord Server</a>
     </div>
-    <h2>Contacts</h2>
+    <h2>Let's connect</h2>
   </div>
   <script>
-    class CustomImage {
-      constructor(src, clsName) {
-        this.img = new Image();
-        this.img.src = src;
-        this.img.className = clsName;
-      }
-    
-      getOuterHTML() {
-        return this.img.outerHTML;
+    const HTMLImage = {
+      createImage(src) {
+        const img = new Image();
+        img.src = src;
+        img.className = 'logo';
+        img.style.height = '1em';
+        img.style.verticalAlign = 'middle';
+        return img.outerHTML;
       }
     }
 
     class TypingText {
-      constructor() {
-        this.typedTextSpan = document.querySelector('.typed-text'), this.cursorSpan = document.querySelector('.cursor');
-        this.textArray = [
-          'Who I am?',
-          `A guy who likes collecting ${new CustomImage('assets/images/apple.png', 'logo').getOuterHTML()} & ${new CustomImage('assets/images/android.png', 'logo').getOuterHTML()} devices`,
-          `Senior ${new CustomImage('assets/images/c.png', 'logo').getOuterHTML()} & Junior ${new CustomImage('assets/images/zig.png', 'logo').getOuterHTML()} developer`,
-          `Former Reverse Engineer ${new CustomImage('assets/images/ida.png', 'logo').getOuterHTML()}`,
-          `I use ${new CustomImage('assets/images/archlinux.png', 'logo').getOuterHTML()} btw`,
-        ];
-        this.typingDelay = 40, this.erasingDelay = 40, this.newTextDelay = 800;
-        this.textArrayIdx = 0, this.charIdx = 0;
+      constructor(textArray) {
+        this.typedTextSpan = document.querySelector('.typed-text');
+        this.cursorSpan = document.querySelector('.cursor');
+        this.textArray = textArray;
+        this.typingDelay = 40;
+        this.erasingDelay = 40;
+        this.newTextDelay = 800;
+        this.textArrayIndex = 0;
+        this.charIndex = 0;
       }
-    
-      type = () => {
-        if (this.charIdx < this.textArray[this.textArrayIdx].length) {
-          if (!this.cursorSpan.classList.contains('typing'))
-            this.cursorSpan.classList.add('typing');
-          const currentChar = this.textArray[this.textArrayIdx].charAt(this.charIdx);
+
+      type() {
+        if (this.charIndex < this.textArray[this.textArrayIndex].length) {
+          this.cursorSpan.classList.add('typing');
+          const currentChar = this.textArray[this.textArrayIndex].charAt(this.charIndex);
           if (currentChar === '<') {
-            const endIdx = this.textArray[this.textArrayIdx].indexOf('>', this.charIdx) + 1;
-            this.typedTextSpan.innerHTML += this.textArray[this.textArrayIdx].substring(this.charIdx, endIdx);
-            this.charIdx = endIdx;
+            const closingTagIndex = this.textArray[this.textArrayIndex].indexOf('>', this.charIndex) + 1;
+            this.typedTextSpan.innerHTML += this.textArray[this.textArrayIndex].substring(this.charIndex, closingTagIndex);
+            this.charIndex = closingTagIndex;
           } else {
             this.typedTextSpan.innerHTML += currentChar;
-            this.charIdx++;
+            this.charIndex++;
           }
-          setTimeout(this.type, this.typingDelay);
+          setTimeout(() => this.type(), this.typingDelay);
         } else {
           this.cursorSpan.classList.remove('typing');
-          setTimeout(this.erase, this.newTextDelay);
+          setTimeout(() => this.erase(), this.newTextDelay);
         }
       }
-    
-      erase = () => {
-        if (this.charIdx > 0) {
-          if (!this.cursorSpan.classList.contains('typing'))
-            this.cursorSpan.classList.add('typing');
+
+      erase() {
+        if (this.charIndex > 0) {
+          this.cursorSpan.classList.add('typing');
           if (this.typedTextSpan.lastChild && this.typedTextSpan.lastChild.nodeName === 'IMG') {
             this.typedTextSpan.lastChild.remove();
-            this.charIdx = this.textArray[this.textArrayIdx].lastIndexOf('<', this.charIdx);
+            this.charIndex = this.textArray[this.textArrayIndex].lastIndexOf('<', this.charIndex);
           } else {
-            this.typedTextSpan.innerHTML = this.textArray[this.textArrayIdx].substring(0, this.charIdx - 1);
-            this.charIdx--;
+            this.typedTextSpan.innerHTML = this.textArray[this.textArrayIndex].substring(0, this.charIndex - 1);
+            this.charIndex--;
           }
-          setTimeout(this.erase, this.erasingDelay);
+          setTimeout(() => this.erase(), this.erasingDelay);
         } else {
           this.cursorSpan.classList.remove('typing');
-          this.textArrayIdx++;
-          if (this.textArrayIdx >= this.textArray.length)
-            this.textArrayIdx = 0;
-          setTimeout(this.type, this.typingDelay + 1100);
+          this.textArrayIndex = (this.textArrayIndex + 1) % this.textArray.length;
+          setTimeout(() => this.type(), this.newTextDelay);
         }
       }
-    
-      start = () => {
-        if (this.textArray.length)
-          setTimeout(this.type, this.newTextDelay + 250);
+
+      start() {
+        if (this.textArray.length) {
+          setTimeout(() => this.type(), this.newTextDelay + 250);
+        }
       }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      const typingText = new TypingText();
-      typingText.start();
+      new TypingText([
+        'Who am I?',
+        `A guy who loves collecting ${HTMLImage.createImage('assets/images/apple.png')} & ${HTMLImage.createImage('assets/images/android.png')} devices`,
+        `Senior ${HTMLImage.createImage('assets/images/c.png')} and Junior ${HTMLImage.createImage('assets/images/zig.png')} developer`,
+        `Former Reverse Engineer ${HTMLImage.createImage('assets/images/ida.png')}`,
+        `I use ${HTMLImage.createImage('assets/images/archlinux.png')} btw`
+      ]).start();
 
       window.addEventListener('load', () => {
         document.body.classList.add('loaded');
